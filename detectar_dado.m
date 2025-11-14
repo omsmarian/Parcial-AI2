@@ -78,8 +78,8 @@ function img_proc = preprocesar_imagen(img)
     % Ecualizar histograma para mejorar contraste
     img_eq = img_norm;
     
-    % Aplicar filtro de mediana para reducir ruido
-    img_filt = ivar(img_eq, 3);
+    % Aplicar filtro de mediana para reducir ruido (usando iwindow en lugar de ivar)
+    img_filt = iwindow(img_eq, @median, 5);
     
     % Detectar bordes para resaltar características
     img_edges = icanny(img_filt);
